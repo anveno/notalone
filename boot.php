@@ -50,7 +50,7 @@ if ( rex::isBackend() && rex::getUser() ) {
                 if (rex::getUser()->getLogin() !== $sql->getValue('be_user')) {
                     $time_passed = intval(date('i', time() - $sql->getValue('timestamp')));
 
-                    $error = $this->i18n('notalone_hinweis_part1').' '.$sql->getValue('be_user').' '.$sql->getValue('notalone_hinweis_part2').' '.$time_passed.' '.$this->i18n('notalone_hinweis_part3');
+                    $error = $this->i18n('notalone_hinweis_part1').' '.$sql->getValue('be_user').' '.$this->i18n('notalone_hinweis_part2').' '.$time_passed.' '.$this->i18n('notalone_hinweis_part3');
                     echo rex_view::error($error);
                 }
             }
