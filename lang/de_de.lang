@@ -1,0 +1,6 @@
+notalone_title = NotAlone
+notalone_hinweis_part1 = Der Nutzer
+notalone_hinweis_part2 = hat vor
+notalone_hinweis_part3 = Minuten diese Seite aufgerufen.
+
+perm_general_notalone[] = notalone[] - Rechte für NotAlone
