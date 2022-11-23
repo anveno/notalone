@@ -1,0 +1,11 @@
+package: notalone
+version: '1.0.0'
+author: 'Stefan Brinkers'
+supportpage: https://github.com/anveno/notalone
+
+# Abhängigkeiten
+# Anforderungen ans System oder anderere AddOns, um dieses AddOn installieren oder update zu können
+requires:
+    redaxo: '^5.2' # benötigt mindestens REDAXO 5.2
+    php:
+        version: '>=7.0' # benötigt mindestens PHP 7
