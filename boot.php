@@ -76,4 +76,48 @@ if ( rex::isBackend() && rex::getUser() ) {
 
 
         }, \rex_extension::LATE);
+
+
+        rex_extension::register('YFORM_DATA_UPDATE', function (rex_extension_point $ep) {
+
+            //$params = $ep->getParams();
+            // Params: 'table', 'data_id', 'data'
+
+            $table = $ep->getParam('table')->getTableName();
+            $table_id = $ep->getParam('table')->getId();
+            $data_id = $ep->getParam('data_id');
+
+            // CHECK IF EXISTS
+            $qry = "SELECT * FROM `rex_notalone` WHERE table_id=:table_id && data_id=:data_id LIMIT 1";
+            $sql = rex_sql::factory();
+            $sql->setDebug(false);
+            $sql->setQuery($qry, [':table_id' => $table_id,':data_id' => $data_id]);
+            if (1 == $sql->getRows())
+            {
+                // if not the same user: show warning
+                if (rex::getUser()->getLogin() !== $sql->getValue('be_user')) {
+                    $time_passed = intval(date('i', time() - $sql->getValue('timestamp')));
+
+                    $error = $this->i18n('notalone_hinweis_part1').' '.$sql->getValue('be_user').' '.$this->i18n('notalone_hinweis_part2').' '.$time_passed.' '.$this->i18n('notalone_hinweis_part3');
+                    echo rex_view::error($error);
+                }
+            }
+            else {
+                // INSERT
+                $sql = rex_sql::factory();
+                $sql->setDebug(false);
+                $sql->setTable(rex::getTable('notalone'));
+                $sql->setValue('timestamp', time());
+                $sql->setValue('be_user', rex::getUser()->getLogin());
+                $sql->setValue('table_id', $table_id);
+                $sql->setValue('data_id', $data_id);
+
+                try {
+                    $sql->insert();
+                    //echo rex_view::success('Seite gesperrt');
+                } catch (Exception $e) {
+                    //echo rex_view::error('Fehler beim Sperren.');
+                }
+            }
+        },\rex_extension::LATE);
 }

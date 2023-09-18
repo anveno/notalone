@@ -9,4 +9,6 @@ rex_sql_table::get(rex::getTable('notalone'))
     ->ensureColumn(new rex_sql_column('category_id', 'int(11)', true))
     ->ensureColumn(new rex_sql_column('clang', 'int(11)', true))
     ->ensureColumn(new rex_sql_column('slice_id', 'int(11)', true))
+    ->ensureColumn(new rex_sql_column('table_id', 'int(11)', true))
+    ->ensureColumn(new rex_sql_column('data_id', 'int(11)', true))
     ->ensure();
