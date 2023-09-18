@@ -6,7 +6,6 @@ Sofern ein anderer BE-Nutzer die gleiche Seite im Backend aufruft erscheint ein 
 
 ![hinweis](https://user-images.githubusercontent.com/30634971/203570094-75a9a588-83c7-4fdf-9098-858b7e8a7897.png)
 
-## Version 1.0.1 - 23.11.2022
+## Version 1.0.1 - 11.09.2023
 
-- Initial
 - yform Datensätze ergänzt
